@@ -1,0 +1,76 @@
+services:
+  configsvr:
+    image: mongo
+    container_name: configsvr
+    command: ["mongod", "--configsvr", "--replSet", "configReplSet", "--bind_ip_all"]
+    ports:
+      - 27019:27019
+    volumes:
+      - configdb-data:/data/configdb
+
+  mongo1:
+    image: mongo
+    container_name: mongo1
+    command: ["mongod", "--shardsvr", "--replSet", "rsSP", "--bind_ip_all"]
+    ports:
+      - 27018:27017
+    volumes:
+      - mongo1-data:/data/db
+
+  mongo2:
+    image: mongo
+    container_name: mongo2
+    command: ["mongod", "--shardsvr", "--replSet", "rsRJ", "--bind_ip_all"]
+    ports:
+      - 27020:27017
+    volumes:
+      - mongo2-data:/data/db
+
+  mongo3:
+    image: mongo
+    container_name: mongo3
+    command: ["mongod", "--shardsvr", "--replSet", "rsMG", "--bind_ip_all"]
+    ports:
+      - 27021:27017
+    volumes:
+      - mongo3-data:/data/db
+
+  mongo4:
+    image: mongo
+    container_name: mongo4
+    command: ["mongod", "--shardsvr", "--replSet", "rsRS", "--bind_ip_all"]
+    ports:
+      - 27022:27017
+    volumes:
+      - mongo4-data:/data/db
+
+  mongo5:
+    image: mongo
+    container_name: mongo5
+    command: ["mongod", "--shardsvr", "--replSet", "rsPR", "--bind_ip_all"]
+    ports:
+      - 27023:27017
+    volumes:
+      - mongo5-data:/data/db
+
+  mongos:
+    image: mongo
+    container_name: mongos
+    command: ["mongos", "--configdb", "configReplSet/configsvr:27019", "--bind_ip_all"]
+    ports:
+      - 27017:27017
+    depends_on:
+      - configsvr
+      - mongo1
+      - mongo2
+      - mongo3
+      - mongo4
+      - mongo5
+
+volumes:
+  configdb-data:
+  mongo1-data:
+  mongo2-data:
+  mongo3-data:
+  mongo4-data:
+  mongo5-data:
