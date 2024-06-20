@@ -87,6 +87,7 @@ python generate_test_data.py
 docker exec -it mongos mongo
 
 use supermarket_inventory
+
 db.products_SP.find().pretty()
 
 ## Executar os testes
