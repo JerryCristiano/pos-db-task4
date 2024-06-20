@@ -83,7 +83,9 @@ python generate_test_data.py
 
 ## Verificar os dados via console do mongodb
 
-mongo
+
+docker exec -it mongos mongo
+
 use supermarket_inventory
 db.products_SP.find().pretty()
 
