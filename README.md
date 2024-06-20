@@ -1,8 +1,8 @@
-## Neste exemplo não está contemplado as configurações com o
-## serviço mongo Atlas em cloud, somente o teste local, utilizando 
-## docker
+Neste exemplo não está contemplado as configurações com o
+serviço mongo Atlas em cloud, somente o teste local, utilizando 
+docker
 
-##Subir o serviço do docker
+## Subir o serviço do docker
 
 docker-compose up -d
 
@@ -73,8 +73,8 @@ sh.enableSharding("supermarket_inventory")
 sh.shardCollection("supermarket_inventory.products", { "product_id": 1 })
 
 ## Executar a carga de dados.
-## Necessário instalar a bibilioteca de acesso ao mongo db e 
-## para gerar os dados de teste
+Necessário instalar a bibilioteca de acesso ao mongo db e 
+para gerar os dados de teste
 
 pip install pymongo faker
 
